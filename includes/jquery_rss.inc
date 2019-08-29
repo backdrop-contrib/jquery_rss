@@ -53,9 +53,10 @@ class JqueryRssBlock extends Block {
    */
   function getContent() {
     $content = "";
+    $default_template = '<li>{date} - {author}: <a href="{url}">{title}</a><br/>{teaserImage}{shortBodyPlain}...</li>';
     if (!empty($this->settings['feedurl'])) {
       $feedurl = check_plain($this->settings['feedurl']);
-      $entryTemplate = isset($this->settings['entryTemplate']) ? filter_xss($this->settings['entryTemplate']) : '';
+      $entryTemplate = (isset($this->settings['entryTemplate']) && $this->settings['entryTemplate'] != '') ? filter_xss($this->settings['entryTemplate']) : $default_template;
       backdrop_add_js(backdrop_get_path('module', 'jquery_rss') . '/library/dist/jquery.rss.min.js', array( 'type' => 'file', 'scope' => 'header', 'weight' => 5));
       // Add moment to format the date more nicely.
       backdrop_add_js('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js', array( 'type' => 'external', 'scope' => 'header', 'weight' => 6));
@@ -102,9 +103,9 @@ class JqueryRssBlock extends Block {
         '#description' => t ('You can format the results of the feed. Default value is shown below.'),
         '#default_value' => $this->settings['entryTemplate'],
       );
-      // <li><a href="{url}">[{author}@{date}] {title}</a><br/>{teaserImage}{shortBodyPlain}</li>
+      // <li>{date} - {author}: <a href="{url}">{title}</a><br/>{teaserImage}{shortBodyPlain}...</li>
       $form['entryTemplateDefault'] = array(
-        '#markup' => '<code>&lt;li&gt;&lt;a href=&quot;{url}&quot;&gt;[{author}@{date}] {title}&lt;/a&gt;&lt;br/&gt;{teaserImage}{shortBodyPlain}&lt;/li&gt;</code>',
+        '#markup' => '<code>&lt;li&gt;{date} - {author}: &lt;a href=&quot;{url}&quot;&gt;{title}&lt;/a&gt;&lt;br/&gt;{teaserImage}{shortBodyPlain}...&lt;/li&gt;</code>',
       );
       if (module_exists('block')) {
         $form['convert'] = array(
