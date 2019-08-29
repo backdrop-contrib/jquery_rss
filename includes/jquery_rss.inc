@@ -63,6 +63,7 @@ class JqueryRssBlock extends Block {
         $('#jqueryrss').rss(
           '$feedurl',
           {
+            ssl: 1,
             entryTemplate:'$entryTemplate'
           })
         })", array( 'type' => 'inline', 'scope' => 'footer', 'weight' => 10));
