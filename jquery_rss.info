@@ -1,0 +1,4 @@
+name = jQuery.RSS Block
+description = A simple block that displays the latest entries from a feed.
+backdrop = 1.x
+type = module

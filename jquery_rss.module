@@ -1,0 +1,28 @@
+<?php
+/**
+  * @file 
+  * Backdrop block to display latest results from an RSS feed.
+  */
+
+/**
+ * Implements hook_autoload_info().
+ */
+function jquery_rss_autoload_info() {
+  return array(
+    'JqueryRssBlock' => 'includes/jquery_rss.inc',
+  );
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function jquery_rss_block_info() {
+  $blocks = array();
+  $blocks['jquery_rss_contribution'] = array(
+    'info' => t('jQuery.RSS'),
+    'description' => t('Add a block to display the latest entries from an RSS feed.'),
+    'class' => 'JqueryRssBlock',
+  );
+  return $blocks;
+}
