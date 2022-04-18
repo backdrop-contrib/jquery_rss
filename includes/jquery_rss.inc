@@ -25,8 +25,10 @@ class JqueryRssBlock extends Block {
       case LAYOUT_TITLE_CUSTOM:
         $title = isset($this->settings['title']) ? check_plain($this->settings['title']) : '';
         break;
+
       case LAYOUT_TITLE_NONE:
         break;
+
       case LAYOUT_TITLE_DEFAULT:
       default:
         if (!empty($this->settings['entryTemplate'])) {
@@ -36,14 +38,14 @@ class JqueryRssBlock extends Block {
     }
     return $title;
   }
-  
+
   /**
    *  Sets title text on draggable block panel in Layout builder.
    */
   function getAdminTitle() {
     return !empty($this->settings['title']) ? check_plain($this->settings['title']) : t('jQuery.RSS feed');
   }
-  
+
   /**
    * Returns the rendered content of this block.
    *
@@ -57,10 +59,10 @@ class JqueryRssBlock extends Block {
     if (!empty($this->settings['feedurl'])) {
       $feedurl = check_plain($this->settings['feedurl']);
       $entryTemplate = (isset($this->settings['entryTemplate']) && $this->settings['entryTemplate'] != '') ? filter_xss($this->settings['entryTemplate']) : $default_template;
-      backdrop_add_js(backdrop_get_path('module', 'jquery_rss') . '/library/dist/jquery.rss.min.js', array( 'type' => 'file', 'scope' => 'header', 'weight' => 5));
+      backdrop_add_js(backdrop_get_path('module', 'jquery_rss') . '/library/jquery.rss.min.js', array( 'type' => 'file', 'scope' => 'header', 'weight' => 5));
       // Add moment to format the date more nicely.
       backdrop_add_js('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js', array( 'type' => 'external', 'scope' => 'header', 'weight' => 6));
-      backdrop_add_js("jQuery(function($) { 
+    backdrop_add_js("jQuery(function($) {
         $('#jqueryrss').rss(
           '$feedurl',
           {
@@ -100,7 +102,7 @@ class JqueryRssBlock extends Block {
       $form['entryTemplate'] = array(
         '#title' => t('Template'),
         '#type' => 'textarea',
-        '#description' => t ('You can format the results of the feed. Default value is shown below.'),
+        '#description' => t('You can format the results of the feed. Default value is shown below.'),
         '#default_value' => $this->settings['entryTemplate'],
       );
       // <li>{date} - {author}: <a href="{url}">{title}</a><br/>{teaserImage}{shortBodyPlain}...</li>

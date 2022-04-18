@@ -4,6 +4,8 @@ Provides a simple block that can pull the latest entries from a feed into a
 block that you can place using Backdrop's Layout system. No data is saved to
 the database from the feed.
 
+The `jQuery.RSS` library is bundled. (`v4.3.0`)
+
 ## Installation
 
 - Install this module using the [official Backdrop CMS instructions](https://backdropcms.org/guide/modules).
@@ -20,7 +22,7 @@ Bugs and Feature requests should be reported in the [Issue Queue](https://github
 
 ## Current Maintainers
 
-- [Laryn Kragt Bakker](https://github.com/laryn), [CEDC.org](https://CEDC.org) 
+- [Laryn Kragt Bakker](https://github.com/laryn), [CEDC.org](https://CEDC.org)
 
 ## Credits
 
